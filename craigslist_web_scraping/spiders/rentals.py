@@ -28,13 +28,16 @@ class RentalsSpider(scrapy.Spider):
             price = rental.xpath('span[@class="result-meta"]/span[@class="result-price"]/text()').extract()
             rooms = rental.xpath('span[@class="result-meta"]/span[@class="housing"]/text()').extract()
             neighborhood = rental.xpath('span[@class="result-meta"]/span[@class="result-hood"]/text()').extract_first("")[2:-1]
+            relative_url = rental.xpath('a/@href').extract_first()
+            absolute_url = response.urljoin(relative_url)
             
             
             yield{'Title': title,
                  'Date':result_date,
                  'Price': price,
                  'Rooms': rooms,
-                 'Neighborhood' : neighborhood}
+                 'Neighborhood' : neighborhood,
+                 'URL': absolute_url}
             
  
       
