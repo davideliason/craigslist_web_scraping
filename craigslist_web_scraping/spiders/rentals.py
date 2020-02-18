@@ -16,10 +16,16 @@ class RentalsSpider(scrapy.Spider):
 
     def parse(self, response):
        
-        titles = response.xpath('//a[@class="result-title hdrlnk"]/text()').extract()
+        #titles = response.xpath('//a[@class="result-title hdrlnk"]/text()').extract()
         
-        for title in titles:
-            yield {'Title': title}
+        #for title in titles:
+        #    yield {'Title': title}
+        rentals = response.xpath('//p[@class="result-info"]')
+        
+        for rental in rentals:
+            title = rental.xpath('a/text()').extract_first()
+            
+            yield{'Title':title}
             
  
       
