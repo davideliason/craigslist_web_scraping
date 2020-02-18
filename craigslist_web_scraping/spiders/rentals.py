@@ -25,9 +25,11 @@ class RentalsSpider(scrapy.Spider):
         for rental in rentals:
             title = rental.xpath('a/text()').extract_first()
             result_date = rental.xpath('time[@class="result-date"]/text()').extract()
+            price = rental.xpath('span[@class="result-meta"]/span[@class="result-price"]/text()').extract()
             
             yield{'Title': title,
-                 'Date':result_date}
+                 'Date':result_date,
+                 'Price': price}
             
  
       
