@@ -15,14 +15,12 @@ class RentalsSpider(scrapy.Spider):
     start_urls = ['https://seattle.craigslist.org/d/vacation%E2%80%90rentals/search/vac/']
 
     def parse(self, response):
-        rentals = response.xpath('//p[@class="result-info"]')
-        # titles = response.xpath('//a[@class="result-title hdrlnk"]/text()').extract()
-        # posted_dates = response.xpath('//time[@class="result-date"]/text()').extract()
+       
+        titles = response.xpath('//a[@class="result-title hdrlnk"]/text()').extract()
         
-       # for title in titles:
-        #    yield {'Title': title}
+        for title in titles:
+            yield {'Title': title}
             
-       # for date in posted_dates:
-       #     yield {'Time': date}
-        print(rentals)
+ 
+      
  
