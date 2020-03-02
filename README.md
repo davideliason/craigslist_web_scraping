@@ -27,3 +27,6 @@ Scrapy is a Python module, which is imported into a Jupyter Notebook as an edito
 
 ![Website Scraped Data Output](Scrapy_CSV_Output.png)
 
+7. From here, we can read that CSV file data into Pandas for further data analysis. 
+
+![CSV data imported into Pandas](ScrapyCSVDataImportedIntoPandasForDA.png)
