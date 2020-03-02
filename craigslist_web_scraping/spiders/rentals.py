@@ -7,6 +7,7 @@
 # 6. Ad Text Content (description)
 
 import scrapy
+from scrapy import Request
 
 
 class RentalsSpider(scrapy.Spider):
@@ -30,14 +31,26 @@ class RentalsSpider(scrapy.Spider):
             neighborhood = rental.xpath('span[@class="result-meta"]/span[@class="result-hood"]/text()').extract_first("")[2:-1]
             relative_url = rental.xpath('a/@href').extract_first()
             absolute_url = response.urljoin(relative_url)
+           
             
             
-            yield{'Title': title,
-                 'Date':result_date,
-                 'Price': price,
-                 'Rooms': rooms,
-                 'Neighborhood' : neighborhood,
-                 'URL': absolute_url}
+
+            yield Request(absolute_url, callback=self.parse_page, meta={'URL': absolute_url, 'Title': title, 'Posted Date':result_date, 'Rental Price': price, 'Number of Bedrooms': rooms, 'Neighborhood' : neighborhood})
+           
+    
+    def parse_page(self, response): 
+        description = "".join(line for line in response.xpath('//*[@id="postingbody"]/text()').extract()) 
+        response.meta['Description'] = description
+        yield response.meta
+
+        
+        
+            
+ 
+
+
+
+
             
  
       
