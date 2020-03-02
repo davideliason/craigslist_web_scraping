@@ -25,5 +25,5 @@ Scrapy is a Python module, which is imported into a Jupyter Notebook as an edito
 6. $ scrapy crawl jobs -o result-titles.csv
 - send output to csv format
 
-![Website Scraped Data Output](./Scrapy_CSV_Ouput.png)
+![Website Scraped Data Output](Scrapy_CSV_Ouput.png)
 
